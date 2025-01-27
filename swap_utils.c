@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:10:03 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/26 16:18:22 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/27 23:45:39 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,23 @@
 #include "push_swap.h"
 
 // swap the top two nodes of the stack
-void	swap(t_stack *stack)
+void swap(t_stack *stack)
 {
-	int	temp;
+    int temp_val;
+    int temp_idx;  // для обмена индексов
 
-	if (!stack || stack->size < 2)
-		return ;
-	temp = stack->top->value;
-	stack->top->value = stack->top->next->value;
-	stack->top->next->value = temp;
+    if (!stack || stack->size < 2)
+        return;
+
+    // Обмениваем value
+    temp_val = stack->top->value;
+    stack->top->value = stack->top->next->value;
+    stack->top->next->value = temp_val;
+
+    // Обмениваем index
+    temp_idx = stack->top->index;
+    stack->top->index = stack->top->next->index;
+    stack->top->next->index = temp_idx;
 }
 // Swap A
 void	sa(t_stack *a)

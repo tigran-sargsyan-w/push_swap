@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:11 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/26 17:57:36 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/27 21:30:50 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 typedef struct s_node
 {
 	int				value;
+	int				index;
 	struct s_node	*next;
 	struct s_node	*prev;
 }					t_node;
@@ -50,5 +51,10 @@ void				rrr(t_stack *a, t_stack *b);
 
 // Utils
 void				print_stack(t_stack *stack);
+void				print_stack_index(t_stack *stack);
+
+// Sorting
+void				index_sort(t_stack *a);
+void				radix_sort(t_stack *a, t_stack *b, int size);
 
 #endif

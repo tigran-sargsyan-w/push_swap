@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/26 17:52:52 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/27 23:52:58 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int argc, char **argv)
 {
 	t_stack *stack_a = stack_init();
 	t_stack *stack_b = stack_init();
+	int *arr = malloc(sizeof(int) * (argc - 1));
 	
 	if (argc == 1)
 	{
@@ -87,24 +88,41 @@ int	main(int argc, char **argv)
         		stack_clear(stack_a);
                 return (0);
             }
+			j++;
 		}
 		i++;
 	}
 
-	i = 1;
-	while (i < argc)
+	// i = 1;
+	// while (i < argc)
+	// {
+	// 	num = ft_atoi(argv[i]);
+	// 	stack_push(stack_a, num);
+	// 	i++;
+	// }
+	
+	i = argc - 1;
+	while (i >= 1)
 	{
-		num = ft_atoi(argv[i]);
-		stack_push(stack_a, num);
-		i++;
+	    int value = ft_atoi(argv[i]);
+	    stack_push(stack_a, value);
+	    i--;
 	}
 	
 
-	print_stack(stack_a);
+	// print_stack(stack_a);
 	
-	ft_printf("Finish\n");// delete this line
-	stack_clear(stack_a);
-	stack_clear(stack_a);
+	index_sort(stack_a);
+	// print_stack_index(stack_a);
+	
+	radix_sort(stack_a, stack_b, stack_a->size);
+
+	// print_stack(stack_a);
+	// print_stack_index(stack_a);
+	
+	// ft_printf("Finish\n");// delete this line
+	// stack_clear(stack_a);
+	// stack_clear(stack_a);
 
 	return (0);
 }

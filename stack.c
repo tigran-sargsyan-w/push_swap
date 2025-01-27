@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 00:45:21 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/26 23:34:14 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/27 23:33:51 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	stack_push(t_stack *stack, int value)
 		exit(EXIT_FAILURE);
 	}
 	new_node->value = value;
+	new_node->index = -1;
 	new_node->next = stack->top;
 	new_node->prev = NULL;
 	if (stack->top)
@@ -111,6 +112,21 @@ void	print_stack(t_stack *stack)
 	while (current)
 	{
 		ft_printf("%d ", current->value);
+		current = current->next;
+	}
+	ft_printf("\n");
+}
+
+// print the stack
+void	print_stack_index(t_stack *stack)
+{
+	t_node	*current;
+
+	current = stack->top;
+	ft_printf("Indexes (size=%d): ", stack->size);
+	while (current)
+	{
+		ft_printf("%d ", current->index);
 		current = current->next;
 	}
 	ft_printf("\n");
