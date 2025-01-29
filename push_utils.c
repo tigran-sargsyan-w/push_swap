@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:13:16 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/27 23:40:15 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:02:27 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void    pa(t_stack *a, t_stack *b)
     a->top = temp;
     a->size++;
 
+    update_positions(a);
+    update_positions(b);
     ft_printf("pa\n");
 }
 
@@ -75,5 +77,7 @@ void    pb(t_stack *a, t_stack *b)
     b->top = temp;
     b->size++;
 
+    update_positions(a);
+    update_positions(b);
     ft_printf("pb\n");
 }

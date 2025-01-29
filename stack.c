@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 00:45:21 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/27 23:33:51 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:47:32 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,25 @@ void	stack_clear(t_stack *stack)
 	}
 	free(stack);
 }
+
+// update positions of the stack
+void update_positions(t_stack *stack)
+{
+    t_node *current;
+    int pos = 0;
+
+    if (!stack)
+        return;
+    current = stack->top;
+    while (current)
+    {
+        current->position = pos;
+        pos++;
+        current = current->next;
+    }
+}
+
+
 // print the stack
 void	print_stack(t_stack *stack)
 {
@@ -127,6 +146,21 @@ void	print_stack_index(t_stack *stack)
 	while (current)
 	{
 		ft_printf("%d ", current->index);
+		current = current->next;
+	}
+	ft_printf("\n");
+}
+
+// print the stack
+void	print_stack_position(t_stack *stack)
+{
+	t_node	*current;
+
+	current = stack->top;
+	ft_printf("Position (size=%d): ", stack->size);
+	while (current)
+	{
+		ft_printf("%d ", current->position);
 		current = current->next;
 	}
 	ft_printf("\n");

@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:10:03 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/27 23:45:39 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:59:09 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ void swap(t_stack *stack)
 void	sa(t_stack *a)
 {
 	swap(a);
+    update_positions(a);
 	ft_printf("sa\n");
 }
 // Swap B
 void	sb(t_stack *b)
 {
 	swap(b);
+    update_positions(b);
 	ft_printf("sb\n");
 }
 // Swap A и B

@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/27 23:52:58 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/29 01:15:45 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,6 @@ int	main(int argc, char **argv)
 		}
 		i++;
 	}
-
-	// i = 1;
-	// while (i < argc)
-	// {
-	// 	num = ft_atoi(argv[i]);
-	// 	stack_push(stack_a, num);
-	// 	i++;
-	// }
 	
 	i = argc - 1;
 	while (i >= 1)
@@ -110,19 +102,27 @@ int	main(int argc, char **argv)
 	}
 	
 
-	// print_stack(stack_a);
+	print_stack(stack_a);
 	
 	index_sort(stack_a);
-	// print_stack_index(stack_a);
+	update_positions(stack_a);
+	print_stack_index(stack_a);
+	// print_stack_position(stack_a);
 	
-	radix_sort(stack_a, stack_b, stack_a->size);
+	int size = stack_a->size;
+	int chunks = determine_chunks(size);
+	
+	// radix_sort(stack_a, stack_b, stack_a->size);
+	chunk_sort(stack_a, stack_b, stack_a->size, chunks);
+	
 
-	// print_stack(stack_a);
-	// print_stack_index(stack_a);
+	print_stack(stack_a);
+	print_stack_index(stack_a);
+	// print_stack_position(stack_a);
 	
 	// ft_printf("Finish\n");// delete this line
-	// stack_clear(stack_a);
-	// stack_clear(stack_a);
+	stack_clear(stack_a);
+	stack_clear(stack_b);
 
 	return (0);
 }
