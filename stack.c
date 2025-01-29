@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 00:45:21 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/28 11:47:32 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:56:55 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_stack	*stack_init(void)
 	stack = malloc(sizeof(t_stack));
 	if (!stack)
 	{
-		//perror("Failed to initialize stack");
+		// ft_printf("Failed to initialize stack\n");
 		exit(EXIT_FAILURE);
 	}
 	stack->top = NULL;
@@ -40,7 +40,7 @@ void	stack_push(t_stack *stack, int value)
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 	{
-		//perror("Failed to push to stack");
+		// ft_printf("Failed to push node to stack\n");
 		exit(EXIT_FAILURE);
 	}
 	new_node->value = value;

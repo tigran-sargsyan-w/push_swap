@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:54:28 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/29 01:15:25 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:14:22 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void move_to_top(t_stack *a, int direction, int moves)
 {
     if (direction == 1)
     {
-        while (moves--)
+        while (moves--) // check if top of B is < than middle of chunk => do rr and not ra //TODO  Smt like 146
             ra(a);
     }
     else
