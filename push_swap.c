@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/31 21:09:17 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:27:15 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(int argc, char **argv)
 {
 	t_stack *stack_a = stack_init();
 	t_stack *stack_b = stack_init();
-	int *arr = malloc(sizeof(int) * (argc - 1));
 	
 	if (argc == 1)
 	{
