@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "libft.h": "c",
+        "stddef.h": "c",
+        "push_swap.h": "c",
+        "chrono": "c",
+        "random": "c",
+        "limits": "c",
+        "algorithm": "c"
+    }
+}
