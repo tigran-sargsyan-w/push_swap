@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/29 01:15:45 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/31 20:46:45 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	main(int argc, char **argv)
 
 	print_stack(stack_a);
 	
-	index_sort(stack_a);
+	assign_sorted_indices(stack_a);
 	update_positions(stack_a);
 	print_stack_index(stack_a);
 	// print_stack_position(stack_a);
