@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:54:28 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/31 19:30:26 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/31 20:34:41 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stddef.h>
 #include "libft/ft_printf.h"
 
-
+// Функция для определения количества чанков
 int determine_chunks(int size)
 {
     if (size <= 20)
@@ -43,12 +43,12 @@ void get_chunk_limits(int chunk, int chunk_size, int size, int *min, int *max)
 }
 
 // Функция для нахождения ближайшего элемента текущего чанка
-t_node *find_closest(t_stack *a, int min, int max, int *moves, int *direction)
+t_node *find_closest(t_stack *stack, int min, int max, int *moves, int *direction)
 {
-    t_node *current = a->top;
+    t_node *current = stack->top;
     t_node *closest = NULL;
     int pos = 0;
-    int closest_pos = a->size;
+    int closest_pos = stack->size;
     
     // Поиск сверху
     while (current)
@@ -68,26 +68,26 @@ t_node *find_closest(t_stack *a, int min, int max, int *moves, int *direction)
     // Определение направления и количества вращений
     if (closest)
     {
-        if (closest_pos <= a->size / 2)
+        if (closest_pos <= stack->size / 2)
         {
-            *direction = 1; // ra
+            *direction = 1; // ra, rb
             *moves = closest_pos;
         }
         else
         {
-            *direction = 2; // rra
-            *moves = a->size - closest_pos;
+            *direction = 2; // rra, rrb
+            *moves = stack->size - closest_pos;
         }
     }
     return closest;
 }
 
 // Функция для перемещения элемента на вершину
-void move_to_top(t_stack *a, int direction, int moves)
+void move_to_top_stack_a(t_stack *a, int direction, int moves)
 {
     if (direction == 1)
     {
-        while (moves--) // check if top of B is < than middle of chunk => do rr and not ra //TODO  Smt like 146
+        while (moves--) // check if top of B is < than middle of chunk => do rr and not ra
             ra(a);
     }
     else
@@ -97,7 +97,8 @@ void move_to_top(t_stack *a, int direction, int moves)
     }
 }
 
-void rotate_to_max(t_stack *b)
+// Функция для оптимизации порядка в b
+void rotate_to_max_stack_b(t_stack *b)
 {
     t_node *current = b->top;
     t_node *max = current;
@@ -114,7 +115,6 @@ void rotate_to_max(t_stack *b)
         current = current->next;
         pos++;
     }
-    
     if (max_pos <= b->size / 2)
     {
         while (max_pos--)
@@ -129,11 +129,12 @@ void rotate_to_max(t_stack *b)
 }
 
 // Основная функция сортировки методом чанков
-void chunk_sort(t_stack *a, t_stack *b, int size, int chunks)
+void chunk_sort(t_stack *a, t_stack *b, int size, int chunk_count)
 {
-    int chunk_size = get_chunk_size(size, chunks);
+    int chunk_size = get_chunk_size(size, chunk_count);
     
-    for (int chunk = 0; chunk < chunks; chunk++)
+    int chunk = 0;
+    while (chunk < chunk_count)
     {
         int min, max;
         get_chunk_limits(chunk, chunk_size, size, &min, &max);
@@ -148,10 +149,8 @@ void chunk_sort(t_stack *a, t_stack *b, int size, int chunks)
             int direction_b, moves_b;
             t_node *target_b = find_closest(b, min, max, &moves_b, &direction_b);
     
-            
-            move_to_top(a, direction_a, moves_a);
+            move_to_top_stack_a(a, direction_a, moves_a);
             pb(a, b);
-            
             
             // Опционально: оптимизируем порядок в b
             if (b->size > 1 && b->top->index < (min + max) / 2)
@@ -162,17 +161,14 @@ void chunk_sort(t_stack *a, t_stack *b, int size, int chunks)
             {
                 sb(b);
             }
-        
-
         }
+        chunk++;
     }
     
     // Возвращаем все элементы из b обратно в a
     while (b->size > 0)
     {
-        rotate_to_max(b);
+        rotate_to_max_stack_b(b);
         pa(a, b);
-    }    
-
+    }
 }
-
