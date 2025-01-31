@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 00:45:21 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/29 15:56:55 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:02:40 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_stack	*stack_init(void)
 	stack->size = 0;
 	return (stack);
 }
+
 // add a new node to the top of the stack
 void	stack_push(t_stack *stack, int value)
 {
@@ -54,6 +55,7 @@ void	stack_push(t_stack *stack, int value)
 		stack->bottom = new_node;
 	stack->size++;
 }
+
 // remove the top node from the stack and return its value
 int	stack_pop(t_stack *stack)
 {
@@ -73,6 +75,7 @@ int	stack_pop(t_stack *stack)
 	stack->size--;
 	return (value);
 }
+
 // look at the top node of the stack without removing it
 int	stack_peek(t_stack *stack)
 {
@@ -80,6 +83,7 @@ int	stack_peek(t_stack *stack)
 		return (0); // Или обработка ошибки
 	return (stack->top->value);
 }
+
 // check if the stack is empty
 int	stack_is_empty(t_stack *stack)
 {
@@ -87,6 +91,7 @@ int	stack_is_empty(t_stack *stack)
 		return (1);
 	return (stack->size == 0);
 }
+
 // remove all nodes from the stack
 void	stack_clear(t_stack *stack)
 {
@@ -102,24 +107,6 @@ void	stack_clear(t_stack *stack)
 	}
 	free(stack);
 }
-
-// update positions of the stack
-void update_positions(t_stack *stack)
-{
-    t_node *current;
-    int pos = 0;
-
-    if (!stack)
-        return;
-    current = stack->top;
-    while (current)
-    {
-        current->position = pos;
-        pos++;
-        current = current->next;
-    }
-}
-
 
 // print the stack
 void	print_stack(t_stack *stack)
@@ -146,21 +133,6 @@ void	print_stack_index(t_stack *stack)
 	while (current)
 	{
 		ft_printf("%d ", current->index);
-		current = current->next;
-	}
-	ft_printf("\n");
-}
-
-// print the stack
-void	print_stack_position(t_stack *stack)
-{
-	t_node	*current;
-
-	current = stack->top;
-	ft_printf("Position (size=%d): ", stack->size);
-	while (current)
-	{
-		ft_printf("%d ", current->position);
 		current = current->next;
 	}
 	ft_printf("\n");

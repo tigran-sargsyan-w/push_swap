@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/31 20:46:45 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:09:17 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 #include "push_swap.h"
 #include <stdlib.h>
 #include <limits.h>
-
-int	push_swap(int *arr)
-{
-	return (0);
-}
 
 int is_valid_number(char *str)
 {
@@ -36,7 +31,6 @@ int is_valid_number(char *str)
     }
     return (1);
 }
-
 
 int	main(int argc, char **argv)
 {
@@ -101,26 +95,21 @@ int	main(int argc, char **argv)
 	    i--;
 	}
 	
-
-	print_stack(stack_a);
-	
 	assign_sorted_indices(stack_a);
-	update_positions(stack_a);
-	print_stack_index(stack_a);
-	// print_stack_position(stack_a);
 	
-	int size = stack_a->size;
-	int chunks = determine_chunks(size);
+	// printing the initial stack
+	print_stack(stack_a);
+	print_stack_index(stack_a);
+	
+	int chunks = determine_chunks(stack_a->size);
 	
 	// radix_sort(stack_a, stack_b, stack_a->size);
 	chunk_sort(stack_a, stack_b, stack_a->size, chunks);
 	
-
+	// printing the final stack
 	print_stack(stack_a);
 	print_stack_index(stack_a);
-	// print_stack_position(stack_a);
 	
-	// ft_printf("Finish\n");// delete this line
 	stack_clear(stack_a);
 	stack_clear(stack_b);
 

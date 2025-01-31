@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:20:00 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/28 16:58:26 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:05:10 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,21 @@ void rotate(t_stack *stack)
     stack->bottom->next = first;
     stack->bottom = first;
 }
+
 // Rotate A
 void	ra(t_stack *a)
 {
 	rotate(a);
-    update_positions(a);
 	ft_printf("ra\n");
 }
+
 // Rotate B
 void	rb(t_stack *b)
 {
 	rotate(b);
-    update_positions(b);
 	ft_printf("rb\n");
 }
+
 // Rotate A и B
 void	rr(t_stack *a, t_stack *b)
 {

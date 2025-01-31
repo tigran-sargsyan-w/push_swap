@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:11 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/31 20:46:45 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:01:50 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ typedef struct s_node
 {
 	int				value;
 	int				index;
-	int				position;
 	struct s_node	*next;
 	struct s_node	*prev;
 }					t_node;
@@ -32,7 +31,7 @@ typedef struct s_stack
 typedef struct s_rotation
 {
 	int				count;
-	int direction; // 1 для ra, 2 для rra
+	int				direction;
 }					t_rotation;
 
 // Stack functions
@@ -42,7 +41,6 @@ int					stack_pop(t_stack *stack);
 int					stack_peek(t_stack *stack);
 int					stack_is_empty(t_stack *stack);
 void				stack_clear(t_stack *stack);
-void				update_positions(t_stack *stack);
 
 // Operations push_swap
 void				sa(t_stack *a);
@@ -60,7 +58,6 @@ void				rrr(t_stack *a, t_stack *b);
 // Utils
 void				print_stack(t_stack *stack);
 void				print_stack_index(t_stack *stack);
-void				print_stack_position(t_stack *stack);
 
 // Sorting
 void				assign_sorted_indices(t_stack *a);

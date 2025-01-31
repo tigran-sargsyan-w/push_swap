@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:13:16 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/28 17:02:27 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:03:39 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void    pa(t_stack *a, t_stack *b)
 
     b->size--;
 
-    // Вставляем узел temp поверх a
     temp->next = a->top;
     temp->prev = NULL;
 
@@ -42,8 +41,6 @@ void    pa(t_stack *a, t_stack *b)
     a->top = temp;
     a->size++;
 
-    update_positions(a);
-    update_positions(b);
     ft_printf("pa\n");
 }
 
@@ -55,17 +52,17 @@ void    pb(t_stack *a, t_stack *b)
     if (!a || a->size == 0)
         return;
 
-    // 1) "Вырезаем" узел из вершины a
+    // 1) "cut" the top node from stack a
     temp = a->top;
-    a->top = a->top->next;         // Сдвигаем вершину
+    a->top = a->top->next;
     if (a->top)
         a->top->prev = NULL;
     else
-        a->bottom = NULL;         // Если стек стал пуст
+        a->bottom = NULL;
 
     a->size--;
 
-    // 2) "Пришиваем" узел temp поверх стека b
+    // 2) "paste" the top node to stack b
     temp->next = b->top;
     temp->prev = NULL;
 
@@ -77,7 +74,5 @@ void    pb(t_stack *a, t_stack *b)
     b->top = temp;
     b->size++;
 
-    update_positions(a);
-    update_positions(b);
     ft_printf("pb\n");
 }
