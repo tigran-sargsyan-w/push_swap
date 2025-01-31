@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:54:28 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/31 17:13:23 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:30:26 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,18 @@
 int determine_chunks(int size)
 {
     if (size <= 20)
-        return 2; // Меньше количество чанков для небольших стэков
+        return 2;
     else if (size <= 100)
-        return 5; // Для средних стэков
+        return 5;
     else if (size <= 500)
-        return 11; // Для больших стэков
+        return 11;
     else
-        return size / 50; // Пример для очень больших стэков
+        return size / 50;
 }
 
 // Функция для определения размера чанка
 int get_chunk_size(int size, int chunks)
 {
-    // return size / chunks + (size % chunks != 0 ? 1 : 0);
     return (size + chunks - 1) / chunks;
 }
 
@@ -129,7 +128,6 @@ void rotate_to_max(t_stack *b)
     }
 }
 
-
 // Основная функция сортировки методом чанков
 void chunk_sort(t_stack *a, t_stack *b, int size, int chunks)
 {
@@ -142,21 +140,30 @@ void chunk_sort(t_stack *a, t_stack *b, int size, int chunks)
         
         while (1)
         {
-            int direction, moves;
-            t_node *target = find_closest(a, min, max, &moves, &direction);
-            if (!target)
+            int direction_a, moves_a;
+            t_node *target_a = find_closest(a, min, max, &moves_a, &direction_a);
+            if (!target_a)
                 break;
             
+            int direction_b, moves_b;
+            t_node *target_b = find_closest(b, min, max, &moves_b, &direction_b);
+    
             
-            move_to_top(a, direction, moves);
+            move_to_top(a, direction_a, moves_a);
             pb(a, b);
             
             
             // Опционально: оптимизируем порядок в b
             if (b->size > 1 && b->top->index < (min + max) / 2)
+            {
                 rb(b);
+            }
             else if (b->size > 1 && b->top->index < b->top->next->index)
+            {
                 sb(b);
+            }
+        
+
         }
     }
     
