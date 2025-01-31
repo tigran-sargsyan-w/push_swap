@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/31 21:27:15 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/01/31 22:20:19 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,10 @@ int	main(int argc, char **argv)
 	print_stack(stack_a);
 	print_stack_index(stack_a);
 	
-	int chunks = determine_chunks(stack_a->size);
+	int chunk_count = determine_chunks(stack_a->size);
 	
 	// radix_sort(stack_a, stack_b, stack_a->size);
-	chunk_sort(stack_a, stack_b, stack_a->size, chunks);
+	chunk_sort(stack_a, stack_b, stack_a->size, chunk_count);
 	
 	// printing the final stack
 	print_stack(stack_a);
