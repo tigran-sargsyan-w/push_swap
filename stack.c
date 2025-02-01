@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 00:45:21 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/31 21:02:40 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/01 19:08:32 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	print_stack(t_stack *stack)
 	t_node	*current;
 
 	current = stack->top;
-	ft_printf("Stack (size=%d): ", stack->size);
+	ft_printf("Stack: ");
 	while (current)
 	{
 		ft_printf("%d ", current->value);
@@ -129,7 +129,7 @@ void	print_stack_index(t_stack *stack)
 	t_node	*current;
 
 	current = stack->top;
-	ft_printf("Indexes (size=%d): ", stack->size);
+	ft_printf("Index: ");
 	while (current)
 	{
 		ft_printf("%d ", current->index);

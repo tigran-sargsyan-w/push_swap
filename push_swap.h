@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:11 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/31 21:01:50 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/01 15:15:40 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ void				assign_sorted_indices(t_stack *a);
 void				radix_sort(t_stack *a, t_stack *b, int size);
 void				chunk_sort(t_stack *a, t_stack *b, int size, int chunks);
 int					determine_chunks(int size);
+
+void				dynamic_chunk_sort(t_stack *a, t_stack *b, int total_size);
 
 #endif
