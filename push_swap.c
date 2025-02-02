@@ -6,14 +6,13 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/01 19:09:11 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/02 19:07:23 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "libft/ft_printf.h"
 #include "push_swap.h"
-#include <stdlib.h>
 #include <limits.h>
 
 int is_valid_number(char *str)
@@ -36,6 +35,9 @@ int	main(int argc, char **argv)
 {
 	t_stack *stack_a = stack_init();
 	t_stack *stack_b = stack_init();
+
+	t_operation *op_list = NULL;
+
 	
 	if (argc == 1)
 	{
@@ -96,22 +98,20 @@ int	main(int argc, char **argv)
 	
 	assign_sorted_indices(stack_a);
 	
-	// printing the initial stack
-	print_stack(stack_a);
+	// print_stack(stack_a);
 	// print_stack_index(stack_a);
 	
-	int chunk_count = determine_chunks(stack_a->size);
+	dynamic_chunk_sort(stack_a, stack_b, stack_a->size, &op_list);
 	
-	// radix_sort(stack_a, stack_b, stack_a->size);
-	// chunk_sort(stack_a, stack_b, stack_a->size, chunk_count);
-	dynamic_chunk_sort(stack_a, stack_b, stack_a->size);
+	optimize_operations(&op_list);
+	print_operations(op_list);
 	
-	// printing the final stack
-	print_stack(stack_a);
+	// print_stack(stack_a);
 	// print_stack_index(stack_a);
 	
 	stack_clear(stack_a);
 	stack_clear(stack_b);
+	free_operations(op_list);
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:54:28 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/01 18:56:58 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/02 19:15:51 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,22 +84,22 @@ t_node *find_closest(t_stack *stack, int min, int max, int *moves, int *directio
 }
 
 // Функция для перемещения элемента на вершину
-void move_to_top_stack_a(t_stack *a, int direction, int moves)
+void move_to_top_stack_a(t_stack *a, int direction, int moves, t_operation **op_list)
 {
     if (direction == 1)
     {
         while (moves--) // check if top of B is < than middle of chunk => do rr and not ra
-            ra(a);
+            ra(a, op_list);
     }
     else
     {
         while (moves--)
-            rra(a);
+            rra(a, op_list);
     }
 }
 
 // Функция для оптимизации порядка в b
-void rotate_to_max_stack_b(t_stack *b)
+void rotate_to_max_stack_b(t_stack *b, t_operation **op_list)
 {
     t_node *current = b->top;
     t_node *max = current;
@@ -119,61 +119,17 @@ void rotate_to_max_stack_b(t_stack *b)
     if (max_pos <= b->size / 2)
     {
         while (max_pos--)
-            rb(b);
+            rb(b, op_list);
     }
     else
     {
         max_pos = b->size - max_pos;
         while (max_pos--)
-            rrb(b);
+            rrb(b, op_list);
     }
 }
 
-// Основная функция сортировки методом чанков
-void chunk_sort(t_stack *a, t_stack *b, int size, int chunk_count)
-{
-    int chunk_size = get_chunk_size(size, chunk_count);
-    
-    int chunk = 0;
-    while (chunk < chunk_count)
-    {
-        int min, max;
-        get_chunk_limits(chunk, chunk_size, size, &min, &max);
-        
-        while (1)
-        {
-            int direction_a, moves_a;
-            t_node *target_a = find_closest(a, min, max, &moves_a, &direction_a);
-            if (!target_a)
-                break;
-            
-            int direction_b, moves_b;
-            t_node *target_b = find_closest(b, min, max, &moves_b, &direction_b);
-    
-            move_to_top_stack_a(a, direction_a, moves_a);
-            pb(a, b);
-            
-            // Опционально: оптимизируем порядок в b
-            if (b->size > 1 && b->top->index < (min + max) / 2)
-            {
-                rb(b);
-            }
-            else if (b->size > 1 && b->top->index < b->top->next->index)
-            {
-                sb(b);
-            }
-        }
-        chunk++;
-    }
-    
-    // Возвращаем все элементы из b обратно в a
-    while (b->size > 0)
-    {
-        rotate_to_max_stack_b(b);
-        pa(a, b);
-    }
-}
-
+// Функция для динамического определения количества чанков
 int determine_dynamic_chunks(int size)
 {
     int chunks;
@@ -193,7 +149,6 @@ int determine_dynamic_chunks(int size)
     return chunks;
 }
 
-
 // Функция сравнения для qsort (сортируем по возрастанию)
 int cmp_int(const void *a, const void *b)
 {
@@ -202,7 +157,7 @@ int cmp_int(const void *a, const void *b)
     return (int_a - int_b);
 }
 
-
+// Функция для определения границ чанка динамически
 void get_dynamic_chunk_limits(t_stack *a, int chunk_size, int *min, int *max)
 {
     int size = a->size;
@@ -237,12 +192,10 @@ void get_dynamic_chunk_limits(t_stack *a, int chunk_size, int *min, int *max)
     free(indices);
 }
 
-
-
-void dynamic_chunk_sort(t_stack *a, t_stack *b, int total_size)
+// Функция для динамической сортировки чанков
+void dynamic_chunk_sort(t_stack *a, t_stack *b, int total_size, t_operation **op_list)
 {
-    int chunk_count = 8;
-    int processed = 0; // сколько элементов уже перенесено в стек B
+    int chunk_count = 6;
     
     while (a->size > 0)
     {
@@ -250,7 +203,6 @@ void dynamic_chunk_sort(t_stack *a, t_stack *b, int total_size)
         // Например, уменьшаем чанки, когда осталось меньше элементов
         if (a->size < total_size / 2)
         {
-            // Увеличиваем число чанков, чтобы размер каждого стал меньше
             chunk_count = determine_dynamic_chunks(a->size);
         }
         
@@ -269,26 +221,23 @@ void dynamic_chunk_sort(t_stack *a, t_stack *b, int total_size)
             if (!target_a)
                 break;
             
-            move_to_top_stack_a(a, direction_a, moves_a);
-            pb(a, b);
+            move_to_top_stack_a(a, direction_a, moves_a, op_list);
+            pb(a, b, op_list);
             
             // Оптимизация порядка в B (например, можно доработать условие)
             if (b->size > 1 && b->top->index < (min_index + max_index) / 2)
             {
-                rb(b);
+                rb(b, op_list);
             }
         }
         // Если необходимо, можно также сразу вернуть часть элементов из B в A, чтобы подготовить
         // их к финальной сортировке, или корректировать порядок в B.
-        
-        processed = total_size - a->size;
     }
     
-    // В конце возвращаем все элементы из B в A в правильном порядке
+    // Return all elements from B to A
     while (b->size > 0)
     {
-        rotate_to_max_stack_b(b);
-        pa(a, b);
+        rotate_to_max_stack_b(b, op_list);
+        pa(a, b, op_list);
     }
 }
-

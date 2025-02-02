@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:48:49 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/01/31 21:04:42 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/02 19:11:06 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,23 @@ static void	reverse_rotate(t_stack *stack)
 }
 
 // Reverse Rotate A
-void	rra(t_stack *a)
+void	rra(t_stack *a, t_operation **op_list)
 {
 	reverse_rotate(a);
-	ft_printf("rra\n");
+	add_operation(op_list, "rra");
 }
 
 // Reverse Rotate B
-void	rrb(t_stack *b)
+void	rrb(t_stack *b, t_operation **op_list)
 {
 	reverse_rotate(b);
-	ft_printf("rrb\n");
+	add_operation(op_list, "rrb");
 }
 
 // Reverse Rotate A и B
-void	rrr(t_stack *a, t_stack *b)
+void	rrr(t_stack *a, t_stack *b, t_operation **op_list)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	ft_printf("rrr\n");
+	add_operation(op_list, "rrr");
 }
