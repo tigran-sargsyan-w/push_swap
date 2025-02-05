@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:11 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/02 17:47:40 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:06:24 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_operation
 
 // Stack functions
 t_stack					*stack_init(void);
-void					stack_push(t_stack *stack, int value);
+void					stack_push_initial(t_stack *stack, int value);
 int						stack_pop(t_stack *stack);
 int						stack_peek(t_stack *stack);
 int						stack_is_empty(t_stack *stack);
@@ -62,8 +62,8 @@ void					rrb(t_stack *b, t_operation **op_list);
 void					rrr(t_stack *a, t_stack *b, t_operation **op_list);
 
 // Utils
-void					print_stack(t_stack *stack);
-void					print_stack_index(t_stack *stack);
+void					print_stack_values(t_stack *stack);
+void					print_stack_indices(t_stack *stack);
 
 // Sorting
 void					assign_sorted_indices(t_stack *a);

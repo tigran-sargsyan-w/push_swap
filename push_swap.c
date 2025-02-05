@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/02 19:07:23 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:06:24 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,22 +92,22 @@ int	main(int argc, char **argv)
 	while (i >= 1)
 	{
 	    int value = ft_atoi(argv[i]);
-	    stack_push(stack_a, value);
+	    stack_push_initial(stack_a, value);
 	    i--;
 	}
 	
 	assign_sorted_indices(stack_a);
 	
-	// print_stack(stack_a);
-	// print_stack_index(stack_a);
+	// print_stack_values(stack_a);
+	// print_stack_indices(stack_a);
 	
 	dynamic_chunk_sort(stack_a, stack_b, stack_a->size, &op_list);
 	
 	optimize_operations(&op_list);
 	print_operations(op_list);
 	
-	// print_stack(stack_a);
-	// print_stack_index(stack_a);
+	// print_stack_values(stack_a);
+	// print_stack_indices(stack_a);
 	
 	stack_clear(stack_a);
 	stack_clear(stack_b);
