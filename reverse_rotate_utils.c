@@ -6,14 +6,20 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:48:49 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/02 19:11:06 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:24:30 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/ft_printf.h"
 #include "push_swap.h"
+#include <stddef.h>
 
-// Reverse Rotate
+static void	reverse_rotate(t_stack *stack);
+
+/**
+ * @brief Reverse Rotate the stack
+ * @param stack Stack to reverse rotate
+ * @details Move the bottom node to the top of the stack
+ */
 static void	reverse_rotate(t_stack *stack)
 {
 	t_node	*last;
@@ -29,21 +35,34 @@ static void	reverse_rotate(t_stack *stack)
 	stack->top = last;
 }
 
-// Reverse Rotate A
+/**
+ * @brief Reverse Rotate the stack A
+ * @param a Stack A
+ * @param op_list List of operations needed to sort the stacks
+ */
 void	rra(t_stack *a, t_operation **op_list)
 {
 	reverse_rotate(a);
 	add_operation(op_list, "rra");
 }
 
-// Reverse Rotate B
+/**
+ * @brief Reverse Rotate the stack B
+ * @param b Stack B
+ * @param op_list List of operations needed to sort the stacks
+ */
 void	rrb(t_stack *b, t_operation **op_list)
 {
 	reverse_rotate(b);
 	add_operation(op_list, "rrb");
 }
 
-// Reverse Rotate A и B
+/**
+ * @brief Reverse Rotate the stack A and B
+ * @param a Stack A
+ * @param b Stack B
+ * @param op_list List of operations needed to sort the stacks
+ */
 void	rrr(t_stack *a, t_stack *b, t_operation **op_list)
 {
 	reverse_rotate(a);
