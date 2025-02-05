@@ -6,14 +6,19 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:13:16 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/02 18:51:33 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:56:30 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/ft_printf.h"
 #include "push_swap.h"
+#include <stddef.h>
 
-// pa: pop from B and push into A
+/**
+ * @brief Pop from B and push into A
+ * @param a stack A
+ * @param b stack B
+ * @param op_list list of operations needed to sort the stacks
+ */
 void	pa(t_stack *a, t_stack *b, t_operation **op_list)
 {
 	t_node	*temp;
@@ -38,7 +43,12 @@ void	pa(t_stack *a, t_stack *b, t_operation **op_list)
 	add_operation(op_list, "pa");
 }
 
-// pb: pop from A and push into B
+/**
+ * @brief Pop from A and push into B
+ * @param a stack A
+ * @param b stack B
+ * @param op_list list of operations needed to sort the stacks
+ */
 void	pb(t_stack *a, t_stack *b, t_operation **op_list)
 {
 	t_node	*temp;
