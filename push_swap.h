@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:11 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/05 15:06:24 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/05 23:18:35 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@ typedef struct s_stack
 	int					size;
 }						t_stack;
 
-typedef struct s_rotation
-{
-	int					count;
-	int					direction;
-}						t_rotation;
-
 typedef struct s_operation
 {
 	char				*op;
@@ -43,10 +37,9 @@ typedef struct s_operation
 // Stack functions
 t_stack					*stack_init(void);
 void					stack_push_initial(t_stack *stack, int value);
-int						stack_pop(t_stack *stack);
-int						stack_peek(t_stack *stack);
-int						stack_is_empty(t_stack *stack);
 void					stack_clear(t_stack *stack);
+void					print_stack_values(t_stack *stack);
+void					print_stack_indices(t_stack *stack);
 
 // Operations push_swap
 void					sa(t_stack *a, t_operation **op_list);
@@ -61,10 +54,6 @@ void					rra(t_stack *a, t_operation **op_list);
 void					rrb(t_stack *b, t_operation **op_list);
 void					rrr(t_stack *a, t_stack *b, t_operation **op_list);
 
-// Utils
-void					print_stack_values(t_stack *stack);
-void					print_stack_indices(t_stack *stack);
-
 // Sorting
 void					assign_sorted_indices(t_stack *a);
 int						determine_chunks(int size);
@@ -76,5 +65,7 @@ void					add_operation(t_operation **head, const char *op);
 void					optimize_operations(t_operation **head);
 void					print_operations(t_operation *head);
 void					free_operations(t_operation *head);
+int						try_merge_operations(t_operation *curr);
+int						try_cancel_operations(t_operation **prev);
 
 #endif
