@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:11 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/05 23:18:35 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:32:21 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void					dynamic_chunk_sort(t_stack *a, t_stack *b,
 
 // Operations
 void					add_operation(t_operation **head, const char *op);
-void					optimize_operations(t_operation **head);
-void					print_operations(t_operation *head);
 void					free_operations(t_operation *head);
+void					print_operations(t_operation *head);
+void					optimize_operations(t_operation **head);
 int						try_merge_operations(t_operation *curr);
 int						try_cancel_operations(t_operation **prev);
 
