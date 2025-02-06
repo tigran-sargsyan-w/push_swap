@@ -11,7 +11,8 @@
                 "-L./libft",
                 "-lft",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                // "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/push_swap"
             ],
             "options": {
                 "cwd": "${fileDirname}"
