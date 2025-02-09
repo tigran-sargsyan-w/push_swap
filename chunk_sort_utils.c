@@ -1,17 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_a_operations.c                               :+:      :+:    :+:   */
+/*   chunk_sort_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/09 13:46:00 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/09 14:34:58 by tsargsya         ###   ########.fr       */
+/*   Created: 2025/02/09 17:55:02 by tsargsya          #+#    #+#             */
+/*   Updated: 2025/02/09 17:55:08 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stddef.h>
+
+static t_node	*find_closest_in_chunk(t_stack *stack, int min, int max,
+					int *closest_pos);
+static void		set_rotation_params(int stack_size, int closest_pos,
+					int *direction, int *moves);
 
 /**
  * @brief Finds the closest node in the stack whose index is within [min, max].
@@ -22,7 +27,7 @@
  * of the found node.
  * @return Pointer to the closest node in the chunk, or NULL if none found.
  */
-t_node	*find_closest_in_chunk(t_stack *stack, int min, int max,
+static t_node	*find_closest_in_chunk(t_stack *stack, int min, int max,
 		int *closest_pos)
 {
 	t_node	*current;
@@ -57,7 +62,7 @@ t_node	*find_closest_in_chunk(t_stack *stack, int min, int max,
 		rb) or 2 for downward (rra, rrb).
  * @param moves Output parameter: number of moves required.
  */
-void	set_rotation_params(int stack_size, int closest_pos, int *direction,
+static void	set_rotation_params(int stack_size, int closest_pos, int *direction,
 		int *moves)
 {
 	if (closest_pos <= stack_size / 2)
@@ -78,10 +83,7 @@ void	set_rotation_params(int stack_size, int closest_pos, int *direction,
  * @param stack Pointer to the stack.
  * @param min Minimum index value of the chunk.
  * @param max Maximum index value of the chunk.
- * @param moves Output parameter: number of moves required to bring 
- * the node to the top.
- * @param direction Output parameter: rotation direction (1 for ra,
- * rb; 2 for rra, rrb).
+ * @param rot Output parameter to store the rotation parameters.
  * @return Pointer to the closest node in the chunk, or NULL if not found.
  */
 t_node	*find_closest(t_stack *stack, int min, int max, t_rotation_params *rot)
@@ -97,7 +99,13 @@ t_node	*find_closest(t_stack *stack, int min, int max, t_rotation_params *rot)
 	return (closest);
 }
 
-// Функция для перемещения элемента на вершину
+/**
+ * @brief Moves the node to the top of the stack.
+ * @param a Pointer to the stack.
+ * @param direction 1 for upward rotation (ra), 2 for downward (rra).
+ * @param moves Number of moves required.
+ * @param op_list Pointer to the list of operations.
+ */
 void	move_to_top_stack_a(t_stack *a, int direction, int moves,
 		t_operation **op_list)
 {
