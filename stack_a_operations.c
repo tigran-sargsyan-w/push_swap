@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 13:46:00 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/09 13:58:53 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/09 14:34:58 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,15 @@ void	set_rotation_params(int stack_size, int closest_pos, int *direction,
  * rb; 2 for rra, rrb).
  * @return Pointer to the closest node in the chunk, or NULL if not found.
  */
-t_node	*find_closest(t_stack *stack, int min, int max, int *moves,
-		int *direction)
+t_node	*find_closest(t_stack *stack, int min, int max, t_rotation_params *rot)
 {
-	int		closest_pos;
+	int		pos;
 	t_node	*closest;
 
-	closest = find_closest_in_chunk(stack, min, max, &closest_pos);
+	closest = find_closest_in_chunk(stack, min, max, &pos);
 	if (closest)
 	{
-		set_rotation_params(stack->size, closest_pos, direction, moves);
+		set_rotation_params(stack->size, pos, &rot->direction, &rot->moves);
 	}
 	return (closest);
 }

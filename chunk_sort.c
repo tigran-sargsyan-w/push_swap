@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chunk.c                                            :+:      :+:    :+:   */
+/*   chunk_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:54:28 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/09 13:49:44 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/09 14:35:27 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,18 @@ void	rotate_to_max_stack_b(t_stack *b, t_operation **op_list)
 static void	process_current_chunk(t_stack *a, t_stack *b, int chunk_size,
 		t_operation **op_list)
 {
-	t_node	*target;
-	int		min_index;
-	int		max_index;
-	int		direction;
-	int		moves;
+	t_node				*target;
+	int					min_index;
+	int					max_index;
+	t_rotation_params	rot;
 
 	get_dynamic_chunk_limits(a, chunk_size, &min_index, &max_index);
 	while (1)
 	{
-		target = find_closest(a, min_index, max_index, &moves, &direction);
+		target = find_closest(a, min_index, max_index, &rot);
 		if (!target)
 			break ;
-		move_to_top_stack_a(a, direction, moves, op_list);
+		move_to_top_stack_a(a, rot.direction, rot.moves, op_list);
 		pb(a, b, op_list);
 		if (b->size > 1 && b->top->index < (min_index + max_index) / 2)
 			rb(b, op_list);

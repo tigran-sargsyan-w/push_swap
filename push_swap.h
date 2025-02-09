@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:11 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/09 13:53:32 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/09 14:31:08 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ typedef struct s_operation
 	char				*op;
 	struct s_operation	*next;
 }						t_operation;
+
+typedef struct s_rotation_params
+{
+	int					moves;
+	int					direction;
+}						t_rotation_params;
 
 // Stack functions
 t_stack					*stack_init(void);
@@ -62,7 +68,7 @@ void					dynamic_chunk_sort(t_stack *a, t_stack *b,
 void					get_dynamic_chunk_limits(t_stack *a, int chunk_size,
 							int *min, int *max);
 t_node					*find_closest(t_stack *stack, int min, int max,
-							int *moves, int *direction);
+							t_rotation_params *rot);
 void					move_to_top_stack_a(t_stack *a, int direction,
 							int moves, t_operation **op_list);
 int						get_chunk_size(int size, int chunks);
