@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:54:28 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/09 16:30:56 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/09 16:47:49 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void	process_current_chunk(t_stack *a, t_stack *b, int chunk_size,
 	int					max_index;
 	t_rotation_params	rot;
 
-	get_dynamic_chunk_limits(a, chunk_size, &min_index, &max_index);
+	determine_chunk_limits(a, chunk_size, &min_index, &max_index);
 	while (1)
 	{
 		target = find_closest(a, min_index, max_index, &rot);
@@ -132,8 +132,8 @@ void	dynamic_chunk_sort(t_stack *a, t_stack *b, int total_size,
 	while (a->size > 0)
 	{
 		if (a->size < total_size / 2)
-			chunk_count = determine_dynamic_chunks(a->size);
-		chunk_size = get_chunk_size(a->size, chunk_count);
+			chunk_count = determine_chunks_count(a->size);
+		chunk_size = determine_chunk_size(a->size, chunk_count);
 		process_current_chunk(a, b, chunk_size, op_list);
 	}
 	return_all_to_a(a, b, op_list);

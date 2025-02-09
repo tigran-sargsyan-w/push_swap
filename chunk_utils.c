@@ -6,34 +6,14 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 13:48:42 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/09 13:59:09 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/09 17:12:55 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 
-// Функция для определения размера чанка
-int	get_chunk_size(int size, int chunks)
-{
-	return ((size + chunks - 1) / chunks);
-}
-
-// Функция для динамического определения количества чанков
-int	determine_dynamic_chunks(int size)
-{
-	int	chunks;
-
-	if (size > 500)
-		chunks = 7;
-	else if (size > 100)
-		chunks = 4;
-	else if (size > 50)
-		chunks = 3;
-	else
-		chunks = 2;
-	return (chunks);
-}
+static void	sort_int_array(int *arr, int size);
 
 /**
  * @brief Sorts an integer array in ascending order using bubble sort.
@@ -64,13 +44,50 @@ static void	sort_int_array(int *arr, int size)
 	}
 }
 
-// Функция для определения границ чанка динамически
-void	get_dynamic_chunk_limits(t_stack *a, int chunk_size, int *min, int *max)
+/**
+ * @brief Determines the size of each chunk.
+ * @param size The total number of elements.
+ * @param chunks The number of chunks.
+ * @return The size of each chunk.
+ */
+int	determine_chunk_size(int size, int chunks)
 {
+	return ((size + chunks - 1) / chunks);
+}
+
+/**
+ * @brief Determines the number of chunks based on the number of elements.
+ * @param size The total number of elements.
+ * @return The number of chunks.
+ */
+int	determine_chunks_count(int size)
+{
+	int	chunks;
+
+	if (size > 500)
+		chunks = 7;
+	else if (size > 100)
+		chunks = 4;
+	else if (size > 50)
+		chunks = 3;
+	else
+		chunks = 2;
+	return (chunks);
+}
+
+/**
+ * @brief Determines the limits of the current chunk.
+ * @param a Pointer to stack A.
+ * @param chunk_size The size of the current chunk.
+ * @param min Output parameter to store the minimum index of the chunk.
+ * @param max Output parameter to store the maximum index of the chunk.
+ */
+void	determine_chunk_limits(t_stack *a, int chunk_size, int *min, int *max)
+{
+	int		i;
 	int		size;
 	int		*indices;
 	t_node	*current;
-	int		i;
 
 	size = a->size;
 	if (size <= 0)
