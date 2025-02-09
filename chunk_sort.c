@@ -6,21 +6,24 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:54:28 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/09 14:35:27 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/09 16:30:56 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/ft_printf.h"
 #include "push_swap.h"
-#include <stddef.h>
-#include <stdlib.h>
+
+static int	find_max_pos_in_stack(t_stack *stack);
+static void	rotate_to_max_stack_b(t_stack *b, t_operation **op_list);
+static void	return_all_to_a(t_stack *a, t_stack *b, t_operation **op_list);
+static void	process_current_chunk(t_stack *a, t_stack *b, int chunk_size,
+				t_operation **op_list);
 
 /**
- * @brief Finds the position of the element with the maximum index in stack B.
- * @param b Pointer to stack B.
+ * @brief Finds the position of the element with the maximum index in stack.
+ * @param stack Pointer to stack.
  * @return The position (0-based) of the element with the highest index.
  */
-static int	find_max_pos_in_stack(t_stack *b)
+static int	find_max_pos_in_stack(t_stack *stack)
 {
 	int		pos;
 	int		max_pos;
@@ -29,7 +32,7 @@ static int	find_max_pos_in_stack(t_stack *b)
 
 	pos = 0;
 	max_pos = 0;
-	current = b->top;
+	current = stack->top;
 	max = current;
 	while (current)
 	{
@@ -45,15 +48,12 @@ static int	find_max_pos_in_stack(t_stack *b)
 }
 
 /**
- * @brief Rotates stack B so that the element with the maximum index
+ * @brief Rotates stack B untill element with the maximum index
  * becomes the top.
  * @param b Pointer to stack B.
  * @param op_list Pointer to the operations list.
- * @details Depending on the position of the maximum element,
- *          the function rotates stack B upwards (rb) or downwards (rrb)
- *          to bring that element to the top.
  */
-void	rotate_to_max_stack_b(t_stack *b, t_operation **op_list)
+static void	rotate_to_max_stack_b(t_stack *b, t_operation **op_list)
 {
 	int	max_pos;
 
@@ -121,10 +121,6 @@ static void	return_all_to_a(t_stack *a, t_stack *b, t_operation **op_list)
  * @param b Pointer to stack B.
  * @param total_size The initial total number of elements in stack A.
  * @param op_list Pointer to the operations list.
- * @details The function computes a dynamic chunk size based 
- * on the current size of A,processes each chunk by moving 
- * eligible elements to stack B, and finally
- * returns all elements from B back to A.
  */
 void	dynamic_chunk_sort(t_stack *a, t_stack *b, int total_size,
 		t_operation **op_list)
