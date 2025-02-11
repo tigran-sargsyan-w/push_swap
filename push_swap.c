@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/11 20:32:52 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/11 20:49:33 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	check_if_arguments_are_numbers(int argc, char **argv)
 
 void	check_if_arg_within_int_limits(int argc, char **argv)
 {
-	int	i;
+	int		i;
 	long	num;
 
 	i = 1;
