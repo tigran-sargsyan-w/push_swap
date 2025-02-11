@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/09 18:51:44 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:45:16 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,20 +121,94 @@ void	parse_args_in_stack(t_stack *stack_a, int argc, char **argv)
 	}
 }
 
+char	**split_and_count(char *arg, int *count)
+{
+	char	**split_args;
+
+	split_args = ft_split(arg, ' ');
+	if (!split_args)
+	{
+		ft_printf("Error\n");
+		exit(EXIT_FAILURE);
+	}
+	*count = 0;
+	while (split_args[*count])
+		(*count)++;
+	return (split_args);
+}
+
+char	**construct_new_argv(char **split_args, int count, char **argv,
+		int *argc)
+{
+	char	**new_argv;
+	int		i;
+
+	new_argv = (char **)malloc((count + 2) * sizeof(char *));
+	if (!new_argv)
+	{
+		ft_printf("Error\n");
+		exit(EXIT_FAILURE);
+	}
+	new_argv[0] = argv[0];
+	i = 0;
+	while (i < count)
+	{
+		new_argv[i + 1] = split_args[i];
+		i++;
+	}
+	new_argv[i + 1] = NULL;
+	*argc = count + 1;
+	free(split_args);
+	return (new_argv);
+}
+
+char	**parse_arguments(int *argc, char **argv)
+{
+	char	**split_args;
+	int		count;
+
+	if (*argc == 2)
+	{
+		split_args = split_and_count(argv[1], &count);
+		return (construct_new_argv(split_args, count, argv, argc));
+	}
+	return (argv);
+}
+
+void	free_arguments(char **argv, int argc, int was_split)
+{
+	int	i;
+
+	i = 1;
+	if (was_split)
+	{
+		while (i < argc)
+		{
+			free(argv[i]);
+			i++;
+		}
+		free(argv);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	t_operation	*op_list;
+	int			was_split;
+	char		**new_argv;
 
+	was_split = (argc == 2);
+	new_argv = parse_arguments(&argc, argv);
 	check_one_argument(argc);
-	check_if_arguments_are_numbers(argc, argv);
-	check_if_arg_within_int_limits(argc, argv);
-	check_if_there_are_duplicates(argc, argv);
+	check_if_arguments_are_numbers(argc, new_argv);
+	check_if_arg_within_int_limits(argc, new_argv);
+	check_if_there_are_duplicates(argc, new_argv);
 	stack_a = stack_init();
 	stack_b = stack_init();
 	op_list = NULL;
-	parse_args_in_stack(stack_a, argc, argv);
+	parse_args_in_stack(stack_a, argc, new_argv);
 	assign_sorted_indices(stack_a);
 	// print_stack_values(stack_a);
 	// print_stack_indices(stack_a);
@@ -146,5 +220,6 @@ int	main(int argc, char **argv)
 	stack_clear(stack_a);
 	stack_clear(stack_b);
 	free_operations(op_list);
+	free_arguments(new_argv, argc, was_split);
 	return (0);
 }
