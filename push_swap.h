@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:11 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/09 17:54:23 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:52:02 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ void					rrb(t_stack *b, t_operation **op_list);
 void					rrr(t_stack *a, t_stack *b, t_operation **op_list);
 // indexing.c
 void					assign_sorted_indices(t_stack *a);
+// small_sort.c
+void					sort_three(t_stack *stack, t_operation **op_list);
+void					sort_four(t_stack *a, t_stack *b,
+							t_operation **op_list);
+void					sort_five(t_stack *a, t_stack *b,
+							t_operation **op_list);
 // chunk_sort.c
 void					dynamic_chunk_sort(t_stack *a, t_stack *b,
 							int total_size, t_operation **op_list);

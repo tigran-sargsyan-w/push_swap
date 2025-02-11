@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/11 12:45:16 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:44:00 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,17 @@ int	main(int argc, char **argv)
 	assign_sorted_indices(stack_a);
 	// print_stack_values(stack_a);
 	// print_stack_indices(stack_a);
-	dynamic_chunk_sort(stack_a, stack_b, stack_a->size, &op_list);
+	// dynamic_chunk_sort(stack_a, stack_b, stack_a->size, &op_list);
+	if (stack_a->size == 2 && stack_a->top->value > stack_a->top->next->value)
+		sa(stack_a, &op_list);
+	else if (stack_a->size == 3)
+		sort_three(stack_a, &op_list);
+	else if (stack_a->size == 4)
+		sort_four(stack_a, stack_b, &op_list);
+	else if (stack_a->size == 5)
+		sort_five(stack_a, stack_b, &op_list);
+	else
+		dynamic_chunk_sort(stack_a, stack_b, stack_a->size, &op_list);
 	optimize_operations(&op_list);
 	print_operations(op_list);
 	// print_stack_values(stack_a);
