@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 20:57:55 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/04 23:58:50 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/11 20:00:21 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static int	find_min_unindexed_value(t_stack *stack)
 	t_node	*current;
 	int		min;
 
-	min = INT_MAX;
 	current = stack->top;
+	min = current->value;
 	while (current)
 	{
 		if (current->index == -1 && current->value < min)
@@ -70,8 +70,6 @@ void	assign_sorted_indices(t_stack *stack)
 	while (index < stack->size)
 	{
 		min = find_min_unindexed_value(stack);
-		if (min == INT_MAX)
-			exit(EXIT_FAILURE);
 		current = stack->top;
 		while (current)
 		{
