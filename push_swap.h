@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:11 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/11 16:52:02 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/14 20:58:37 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,15 @@ void					optimize_operations(t_operation **head);
 // optimization_utils.c
 int						try_cancel_operations(t_operation **prev);
 int						try_merge_operations(t_operation *curr);
+// validation.c
+void					check_no_args(int argc);
+void					check_numeric_args(int argc, char **argv);
+void					check_int_limits_args(int argc, char **argv);
+void					check_duplicates_args(int argc, char **argv);
+// parsing.c
+char					**split_in_quotes_args(int *argc, char **argv);
+void					free_arguments(char **argv, int argc, int was_split);
+void					parse_and_push_args(t_stack *stack, int argc,
+							char **argv);
 
 #endif
