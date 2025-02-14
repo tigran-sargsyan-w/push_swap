@@ -7,6 +7,8 @@
         "random": "c",
         "limits": "c",
         "algorithm": "c",
-        "ft_printf.h": "c"
+        "ft_printf.h": "c",
+        "limits.h": "c",
+        "stdlib.h": "c"
     }
 }
