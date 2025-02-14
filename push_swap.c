@@ -6,52 +6,67 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/14 21:01:02 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/15 00:48:56 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 
+char	**parse_and_validate_args(t_program_data *data, char **argv)
+{
+	data->was_split = (data->argc == 2);
+	data->new_argv = split_in_quotes_args(&data->argc, argv);
+	check_no_args(data->argc);
+	check_numeric_args(data->argc, data->new_argv);
+	check_int_limits_args(data->argc, data->new_argv);
+	check_duplicates_args(data->argc, data->new_argv);
+	return (data->new_argv);
+}
+
+void	choose_sorting_algorithm(t_program_data *data)
+{
+	if (data->stack_a->size == 2
+		&& data->stack_a->top->value > data->stack_a->top->next->value)
+		sa(data->stack_a, &data->op_list);
+	else if (data->stack_a->size == 3)
+		sort_three(data->stack_a, &data->op_list);
+	else if (data->stack_a->size == 4)
+		sort_four(data->stack_a, data->stack_b, &data->op_list);
+	else if (data->stack_a->size == 5)
+		sort_five(data->stack_a, data->stack_b, &data->op_list);
+	else
+		dynamic_chunk_sort(data->stack_a, data->stack_b, data->stack_a->size,
+			&data->op_list);
+}
+
+void	optimize_and_print_operations(t_program_data *data)
+{
+	optimize_operations(&data->op_list);
+	print_operations(data->op_list);
+}
+
+void	cleanup(t_program_data *data)
+{
+	stack_clear(data->stack_a);
+	stack_clear(data->stack_b);
+	free_operations(data->op_list);
+	free_arguments(data->new_argv, data->argc, data->was_split);
+}
+
 int	main(int argc, char **argv)
 {
-	t_stack		*stack_a;
-	t_stack		*stack_b;
-	t_operation	*op_list;
-	int			was_split;
-	char		**new_argv;
+	t_program_data	data;
 
-	was_split = (argc == 2);
-	new_argv = split_in_quotes_args(&argc, argv);
-	check_no_args(argc);
-	check_numeric_args(argc, new_argv);
-	check_int_limits_args(argc, new_argv);
-	check_duplicates_args(argc, new_argv);
-	stack_a = stack_init();
-	stack_b = stack_init();
-	op_list = NULL;
-	parse_and_push_args(stack_a, argc, new_argv);
-	assign_sorted_indices(stack_a);
-	// print_stack_values(stack_a);
-	// print_stack_indices(stack_a);
-	// dynamic_chunk_sort(stack_a, stack_b, stack_a->size, &op_list);
-	if (stack_a->size == 2 && stack_a->top->value > stack_a->top->next->value)
-		sa(stack_a, &op_list);
-	else if (stack_a->size == 3)
-		sort_three(stack_a, &op_list);
-	else if (stack_a->size == 4)
-		sort_four(stack_a, stack_b, &op_list);
-	else if (stack_a->size == 5)
-		sort_five(stack_a, stack_b, &op_list);
-	else
-		dynamic_chunk_sort(stack_a, stack_b, stack_a->size, &op_list);
-	optimize_operations(&op_list);
-	print_operations(op_list);
-	// print_stack_values(stack_a);
-	// print_stack_indices(stack_a);
-	stack_clear(stack_a);
-	stack_clear(stack_b);
-	free_operations(op_list);
-	free_arguments(new_argv, argc, was_split);
+	data.argc = argc;
+	data.new_argv = parse_and_validate_args(&data, argv);
+	data.stack_a = stack_init();
+	data.stack_b = stack_init();
+	data.op_list = NULL;
+	parse_and_push_args(data.stack_a, data.argc, data.new_argv);
+	assign_sorted_indices(data.stack_a);
+	choose_sorting_algorithm(&data);
+	optimize_and_print_operations(&data);
+	cleanup(&data);
 	return (0);
 }

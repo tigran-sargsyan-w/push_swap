@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:11 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/14 20:58:37 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/15 00:46:15 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,16 @@ typedef struct s_rotation_params
 	int					moves;
 	int					direction;
 }						t_rotation_params;
+
+typedef struct s_program_data
+{
+	t_stack		*stack_a;
+	t_stack		*stack_b;
+	t_operation	*op_list;
+	char		**new_argv;
+	int			argc;
+	int			was_split;
+}				t_program_data;
 
 // stack.c
 t_stack					*stack_init(void);
