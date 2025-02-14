@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/11 17:44:00 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:20:27 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ void	check_if_arguments_are_numbers(int argc, char **argv)
 
 void	check_if_arg_within_int_limits(int argc, char **argv)
 {
-	int	i;
-	int	num;
+	int		i;
+	long	num;
 
 	i = 1;
 	num = 0;
 	while (i < argc)
 	{
-		num = ft_atoi(argv[i]);
+		num = ft_atol(argv[i]);
 		if (num < INT_MIN || num > INT_MAX)
 		{
 			ft_printf("Error\n");
