@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/14 16:20:27 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:42:54 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <limits.h>
 #include <stdlib.h>
 
-int	is_valid_number(char *str)
+int	is_valid_digit_string(char *str)
 {
 	int	i;
 
@@ -34,7 +34,7 @@ int	is_valid_number(char *str)
 	return (1);
 }
 
-void	check_one_argument(int argc)
+void	check_no_args(int argc)
 {
 	if (argc == 1)
 	{
@@ -43,14 +43,14 @@ void	check_one_argument(int argc)
 	}
 }
 
-void	check_if_arguments_are_numbers(int argc, char **argv)
+void	check_numeric_args(int argc, char **argv)
 {
 	int	i;
 
 	i = 1;
 	while (i < argc)
 	{
-		if (!is_valid_number(argv[i]))
+		if (!is_valid_digit_string(argv[i]))
 		{
 			ft_printf("Error\n");
 			exit(EXIT_FAILURE);
@@ -59,7 +59,7 @@ void	check_if_arguments_are_numbers(int argc, char **argv)
 	}
 }
 
-void	check_if_arg_within_int_limits(int argc, char **argv)
+void	check_int_limits_args(int argc, char **argv)
 {
 	int		i;
 	long	num;
@@ -78,7 +78,7 @@ void	check_if_arg_within_int_limits(int argc, char **argv)
 	}
 }
 
-void	check_if_there_are_duplicates(int argc, char **argv)
+void	check_duplicates_args(int argc, char **argv)
 {
 	int	i;
 	int	j;
@@ -107,7 +107,7 @@ void	check_if_there_are_duplicates(int argc, char **argv)
 	}
 }
 
-void	parse_args_in_stack(t_stack *stack_a, int argc, char **argv)
+void	parse_and_push_args(t_stack *stack_a, int argc, char **argv)
 {
 	int	i;
 	int	value;
@@ -162,7 +162,7 @@ char	**construct_new_argv(char **split_args, int count, char **argv,
 	return (new_argv);
 }
 
-char	**parse_arguments(int *argc, char **argv)
+char	**split_in_quotes_args(int *argc, char **argv)
 {
 	char	**split_args;
 	int		count;
@@ -200,15 +200,15 @@ int	main(int argc, char **argv)
 	char		**new_argv;
 
 	was_split = (argc == 2);
-	new_argv = parse_arguments(&argc, argv);
-	check_one_argument(argc);
-	check_if_arguments_are_numbers(argc, new_argv);
-	check_if_arg_within_int_limits(argc, new_argv);
-	check_if_there_are_duplicates(argc, new_argv);
+	new_argv = split_in_quotes_args(&argc, argv);
+	check_no_args(argc);
+	check_numeric_args(argc, new_argv);
+	check_int_limits_args(argc, new_argv);
+	check_duplicates_args(argc, new_argv);
 	stack_a = stack_init();
 	stack_b = stack_init();
 	op_list = NULL;
-	parse_args_in_stack(stack_a, argc, new_argv);
+	parse_and_push_args(stack_a, argc, new_argv);
 	assign_sorted_indices(stack_a);
 	// print_stack_values(stack_a);
 	// print_stack_indices(stack_a);
