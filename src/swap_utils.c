@@ -6,11 +6,11 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:10:03 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 17:34:33 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/15 20:46:06 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/push_swap.h"
+#include "../includes/push_swap.h"
 
 static void	swap(t_stack *stack);
 

@@ -6,11 +6,11 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:54:28 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 17:33:41 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/15 20:45:16 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/push_swap.h"
+#include "../includes/push_swap.h"
 
 static int	find_max_pos_in_stack(t_stack *stack);
 static void	rotate_to_max_stack_b(t_stack *b, t_operation **op_list);

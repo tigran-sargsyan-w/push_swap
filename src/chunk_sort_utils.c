@@ -6,11 +6,11 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:55:02 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 17:33:25 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/15 20:45:14 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/push_swap.h"
+#include "../includes/push_swap.h"
 #include <stddef.h>
 
 static t_node	*find_closest_in_chunk(t_stack *stack, int min, int max,
