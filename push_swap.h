@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:11 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 00:46:15 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/15 12:14:55 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ typedef struct s_rotation_params
 
 typedef struct s_program_data
 {
-	t_stack		*stack_a;
-	t_stack		*stack_b;
-	t_operation	*op_list;
-	char		**new_argv;
-	int			argc;
-	int			was_split;
-}				t_program_data;
+	t_stack				*stack_a;
+	t_stack				*stack_b;
+	t_operation			*op_list;
+	char				**new_argv;
+	int					argc;
+	int					was_split;
+}						t_program_data;
 
 // stack.c
 t_stack					*stack_init(void);
@@ -101,14 +101,18 @@ void					optimize_operations(t_operation **head);
 int						try_cancel_operations(t_operation **prev);
 int						try_merge_operations(t_operation *curr);
 // validation.c
-void					check_no_args(int argc);
-void					check_numeric_args(int argc, char **argv);
-void					check_int_limits_args(int argc, char **argv);
-void					check_duplicates_args(int argc, char **argv);
+void					check_no_args(int argc, t_program_data *data);
+void					check_numeric_args(int argc, char **argv,
+							t_program_data *data);
+void					check_int_limits_args(int argc, char **argv,
+							t_program_data *data);
+void					check_duplicates_args(int argc, char **argv,
+							t_program_data *data);
 // parsing.c
 char					**split_in_quotes_args(int *argc, char **argv);
 void					free_arguments(char **argv, int argc, int was_split);
 void					parse_and_push_args(t_stack *stack, int argc,
 							char **argv);
-
+// push_swap.c
+void					cleanup(t_program_data *data);
 #endif

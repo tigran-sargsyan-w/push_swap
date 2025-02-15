@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 00:48:56 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/15 13:00:47 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ char	**parse_and_validate_args(t_program_data *data, char **argv)
 {
 	data->was_split = (data->argc == 2);
 	data->new_argv = split_in_quotes_args(&data->argc, argv);
-	check_no_args(data->argc);
-	check_numeric_args(data->argc, data->new_argv);
-	check_int_limits_args(data->argc, data->new_argv);
-	check_duplicates_args(data->argc, data->new_argv);
+	check_no_args(data->argc, data);
+	check_numeric_args(data->argc, data->new_argv, data);
+	check_int_limits_args(data->argc, data->new_argv, data);
+	check_duplicates_args(data->argc, data->new_argv, data);
 	return (data->new_argv);
 }
 
@@ -59,10 +59,10 @@ int	main(int argc, char **argv)
 	t_program_data	data;
 
 	data.argc = argc;
-	data.new_argv = parse_and_validate_args(&data, argv);
 	data.stack_a = stack_init();
 	data.stack_b = stack_init();
 	data.op_list = NULL;
+	data.new_argv = parse_and_validate_args(&data, argv);
 	parse_and_push_args(data.stack_a, data.argc, data.new_argv);
 	assign_sorted_indices(data.stack_a);
 	choose_sorting_algorithm(&data);

@@ -6,12 +6,13 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 20:39:51 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/14 20:47:57 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/15 13:30:30 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/ft_printf.h"
 #include "libft/libft.h"
+#include "push_swap.h"
 #include <limits.h>
 #include <stdlib.h>
 
@@ -35,16 +36,17 @@ static int	is_valid_digit_string(char *str)
 	return (1);
 }
 
-void	check_no_args(int argc)
+void	check_no_args(int argc, t_program_data *data)
 {
 	if (argc == 1)
 	{
+		cleanup(data);
 		ft_printf("Error: no arguments\n");
 		exit(EXIT_FAILURE);
 	}
 }
 
-void	check_numeric_args(int argc, char **argv)
+void	check_numeric_args(int argc, char **argv, t_program_data *data)
 {
 	int	i;
 
@@ -53,6 +55,7 @@ void	check_numeric_args(int argc, char **argv)
 	{
 		if (!is_valid_digit_string(argv[i]))
 		{
+			cleanup(data);
 			ft_printf("Error\n");
 			exit(EXIT_FAILURE);
 		}
@@ -60,7 +63,7 @@ void	check_numeric_args(int argc, char **argv)
 	}
 }
 
-void	check_int_limits_args(int argc, char **argv)
+void	check_int_limits_args(int argc, char **argv, t_program_data *data)
 {
 	int		i;
 	long	num;
@@ -72,6 +75,7 @@ void	check_int_limits_args(int argc, char **argv)
 		num = ft_atol(argv[i]);
 		if (num < INT_MIN || num > INT_MAX)
 		{
+			cleanup(data);
 			ft_printf("Error\n");
 			exit(EXIT_FAILURE);
 		}
@@ -79,7 +83,7 @@ void	check_int_limits_args(int argc, char **argv)
 	}
 }
 
-void	check_duplicates_args(int argc, char **argv)
+void	check_duplicates_args(int argc, char **argv, t_program_data *data)
 {
 	int	i;
 	int	j;
@@ -87,9 +91,6 @@ void	check_duplicates_args(int argc, char **argv)
 	int	num2;
 
 	i = 1;
-	j = 1;
-	num = 0;
-	num2 = 0;
 	while (i < argc)
 	{
 		j = 1;
@@ -99,6 +100,7 @@ void	check_duplicates_args(int argc, char **argv)
 			num2 = ft_atoi(argv[j]);
 			if (num == num2 && i != j)
 			{
+				cleanup(data);
 				ft_printf("Error\n");
 				exit(EXIT_FAILURE);
 			}
