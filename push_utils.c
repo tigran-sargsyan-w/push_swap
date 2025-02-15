@@ -6,11 +6,11 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:13:16 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/05 10:56:30 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/15 17:34:13 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "includes/push_swap.h"
 #include <stddef.h>
 
 /**

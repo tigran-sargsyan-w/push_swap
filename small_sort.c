@@ -6,11 +6,11 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:50:55 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/11 16:48:35 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/15 17:34:27 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "includes/push_swap.h"
 
 static int	find_min_value(t_stack *stack);
 static int	find_value_position(t_stack *stack, int value);

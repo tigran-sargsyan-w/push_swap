@@ -6,13 +6,13 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 20:52:41 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/14 20:59:12 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/15 17:34:04 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/ft_printf.h"
 #include "libft/libft.h"
-#include "push_swap.h"
+#include "includes/push_swap.h"
 #include <stdlib.h>
 
 static char	**split_and_count(char *arg, int *count);

@@ -6,11 +6,11 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 13:48:42 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/09 17:12:55 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/15 17:33:45 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "includes/push_swap.h"
 #include <stdlib.h>
 
 static void	sort_int_array(int *arr, int size);
