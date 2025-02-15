@@ -18,6 +18,51 @@ run_test() {
     fi
 }
 
+# Function to run empty input tests
+run_empty_input_tests() {
+    expected_output="$1"
+
+    # 1️⃣ Check the output of empty input
+    empty_output=$(./push_swap 2>&1)
+
+    if [ "$empty_output" == "$expected_output" ]; then
+        echo "✅ OK (Empty input correctly returns \"$expected_output\")"
+    else
+        echo "❌ FAIL (Empty input): Expected \"$expected_output\", but got:"
+        echo "\"$empty_output\""
+        errors=$((errors + 1))
+    fi
+
+    # 2️⃣ Check memory errors in empty input
+    vg_output=$(valgrind --leak-check=no --error-exitcode=42 ./push_swap 2>&1)
+
+    if echo "$vg_output" | grep -q "ERROR SUMMARY: 0 errors"; then
+        echo "✅ OK (No Memory Errors in empty input test)"
+    else
+        echo "❌ FAIL (Memory Errors in empty input test)"
+        echo "$vg_output" | grep "ERROR SUMMARY:"
+        errors=$((errors + 1))
+    fi
+
+    # 3️⃣ Check memory leaks in empty input
+    vg_output=$(valgrind --leak-check=full --show-leak-kinds=all \
+        --errors-for-leak-kinds=all --error-exitcode=42 ./push_swap 2>&1)
+
+    total_heap=$(echo "$vg_output" | grep "total heap usage:")
+    allocs=$(echo "$total_heap" | sed -E 's/.*total heap usage: ([0-9]+) allocs,.*/\1/')
+    frees=$(echo "$total_heap" | sed -E 's/.*allocs, ([0-9]+) frees,.*/\1/')
+
+    if [ -z "$allocs" ] || [ -z "$frees" ]; then
+        echo "❌ FAIL (Memory Leaks in empty input test)"
+        errors=$((errors + 1))
+    elif [ "$allocs" -eq "$frees" ]; then
+        echo "✅ OK (No Memory Leaks in empty input test)"
+    else
+        echo "❌ FAIL (Memory Leaks in empty input test) - $total_heap"
+        errors=$((errors + 1))
+    fi
+}
+
 # Function to run memory errors tests via Valgrind(no leaks check)
 run_valgrind_memory_errors_test() {
     args="$1"
@@ -106,8 +151,15 @@ run_test "54867543867438 3" "Error"
 run_test "-2147483647765 4 5" "Error"
 run_test "214748364748385 28 47 29" "Error"
 
+# Empty input tests
 echo ""
-echo "🚀 [Phase 2] Memory Errors tests via Valgrind..."
+echo "🚀 [Phase 2] Testing push_swap with empty input..."
+echo ""
+run_empty_input_tests "Error: no arguments"
+
+# Memory errors tests
+echo ""
+echo "🚀 [Phase 3] Memory Errors tests via Valgrind..."
 echo ""
 echo "✅ [Check OK] checking tests that should return OK [Check OK] ✅"
 run_valgrind_memory_errors_test "1 3 5 9 20 -4 50 60 4 8"
@@ -130,8 +182,9 @@ run_valgrind_memory_errors_test "54867543867438 3"
 run_valgrind_memory_errors_test "-2147483647765 4 5"
 run_valgrind_memory_errors_test "214748364748385 28 47 29"
 
+# Memory leaks tests
 echo ""
-echo "🚀 [Phase 3] Memory Leaks tests via Valgrind..."
+echo "🚀 [Phase 4] Memory Leaks tests via Valgrind..."
 echo ""
 echo "✅ [Check OK] checking tests that should return OK [Check OK] ✅"
 run_valgrind_memory_leaks_test "1 3 5 9 20 -4 50 60 4 8"
@@ -154,8 +207,9 @@ run_valgrind_memory_leaks_test "54867543867438 3"
 run_valgrind_memory_leaks_test "-2147483647765 4 5"
 run_valgrind_memory_leaks_test "214748364748385 28 47 29"
 
+# Random tests(benchmark for project evaluation)
 echo ""
-echo "🚀 [Phase 4] Randomized tests..."
+echo "🚀 [Phase 5] Randomized tests..."
 run_random_tests 5 3 # Test with 3 numbers 5 times
 run_random_tests 5 4 # Test with 4 numbers 5 times
 run_random_tests 5 5 # Test with 5 numbers 5 times
