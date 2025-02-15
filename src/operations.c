@@ -6,13 +6,13 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 13:53:55 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 20:45:29 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/15 21:24:58 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/ft_printf.h"
-#include "../libft/libft.h"
-#include "../includes/push_swap.h"
+#include "ft_printf.h"
+#include "libft.h"
+#include "push_swap.h"
 #include <stdlib.h>
 
 /**
