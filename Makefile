@@ -57,23 +57,33 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 # **************************************************************************** #
 
 all: $(NAME)
+	@echo "😊 Build completed successfully!"
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	@echo "🔗 Linking object files and libft to create $(NAME)..."
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	@echo "🚀 Executable $(NAME) created successfully!"
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	@echo "🔨 Building libft library..."
+	@$(MAKE) -C $(LIBFT_DIR)
+	@echo "👍 libft built successfully!"
 
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "✅ $< compiled."
 
 clean:
-	rm -f $(OBJS)
-	$(MAKE) -C $(LIBFT_DIR) clean
+	@echo "🧹 Cleaning object files..."
+	@rm -f $(OBJS)
+	@$(MAKE) -C $(LIBFT_DIR) clean
+	@echo "🗑️ Object files removed."
 
 fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
+	@echo "🚮 Removing executable $(NAME)..."
+	@rm -f $(NAME)
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@echo "🔥 Executable and libft removed."
 
 re: fclean all
 
