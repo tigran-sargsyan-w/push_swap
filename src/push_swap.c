@@ -6,14 +6,24 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 21:25:21 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/15 21:43:50 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 
-char	**parse_and_validate_args(t_program_data *data, char **argv)
+static char	**parse_and_validate_args(t_program_data *data, char **argv);
+static void	choose_sorting_algorithm(t_program_data *data);
+static void	optimize_and_print_operations(t_program_data *data);
+
+/**
+ * @brief Parses and validates the arguments.
+ * @param data Program data.(All the data needed for the program)
+ * @param argv Array of arguments.
+ * @return New argv array.
+ */
+static char	**parse_and_validate_args(t_program_data *data, char **argv)
 {
 	data->was_split = (data->argc == 2);
 	data->new_argv = split_in_quotes_args(&data->argc, argv);
@@ -24,7 +34,11 @@ char	**parse_and_validate_args(t_program_data *data, char **argv)
 	return (data->new_argv);
 }
 
-void	choose_sorting_algorithm(t_program_data *data)
+/**
+ * @brief Chooses the sorting algorithm based on the number of elements.
+ * @param data Program data.(All the data needed for the program)
+ */
+static void	choose_sorting_algorithm(t_program_data *data)
 {
 	if (data->stack_a->size == 2
 		&& data->stack_a->top->value > data->stack_a->top->next->value)
@@ -37,15 +51,23 @@ void	choose_sorting_algorithm(t_program_data *data)
 		sort_five(data->stack_a, data->stack_b, &data->op_list);
 	else
 		dynamic_chunk_sort(data->stack_a, data->stack_b, data->stack_a->size,
-			&data->op_list);
+				&data->op_list);
 }
 
-void	optimize_and_print_operations(t_program_data *data)
+/**
+ * @brief Optimizes and prints the operations.
+ * @param data Program data.(All the data needed for the program)
+ */
+static void	optimize_and_print_operations(t_program_data *data)
 {
 	optimize_operations(&data->op_list);
 	print_operations(data->op_list);
 }
 
+/**
+ * @brief Frees the allocated memory.
+ * @param data Program data.(All the data needed for the program)
+ */
 void	cleanup(t_program_data *data)
 {
 	stack_clear(data->stack_a);
