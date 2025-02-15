@@ -60,29 +60,23 @@ all: $(NAME)
 	@echo "😊 Build completed successfully!"
 
 $(NAME): $(OBJS) $(LIBFT)
-	@echo "🔗 Linking object files and libft to create $(NAME)..."
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 	@echo "🚀 Executable $(NAME) created successfully!"
 
 $(LIBFT):
-	@echo "🔨 Building libft library..."
-	@$(MAKE) -C $(LIBFT_DIR)
-	@echo "👍 libft built successfully!"
+	@$(MAKE) -s -C $(LIBFT_DIR)
 
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "✅ $< compiled."
 
 clean:
-	@echo "🧹 Cleaning object files..."
 	@rm -f $(OBJS)
-	@$(MAKE) -C $(LIBFT_DIR) clean
-	@echo "🗑️ Object files removed."
+	@$(MAKE) -s -C $(LIBFT_DIR) clean
+	@echo "🗑️ Push swap object files removed."
 
 fclean: clean
-	@echo "🚮 Removing executable $(NAME)..."
 	@rm -f $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@$(MAKE) -s -C $(LIBFT_DIR) fclean
 	@echo "🔥 Executable and libft removed."
 
 re: fclean all
