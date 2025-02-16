@@ -9,6 +9,7 @@
         "algorithm": "c",
         "ft_printf.h": "c",
         "limits.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "stack.h": "c"
     }
 }
