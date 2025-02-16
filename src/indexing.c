@@ -6,13 +6,13 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 20:57:55 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 21:24:50 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/16 21:24:01 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include <limits.h>
 #include <stdlib.h>
+#include "stack.h"
 
 static int	find_min_unindexed_value(t_stack *stack);
 static void	init_stack_indices(t_stack *stack);
