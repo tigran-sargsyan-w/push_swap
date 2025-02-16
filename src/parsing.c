@@ -6,14 +6,14 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 20:52:41 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 21:41:08 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/16 21:52:37 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "ft_printf.h"
 #include "libft.h"
-#include "push_swap.h"
-#include <stdlib.h>
+#include "stack.h"
 
 static char	**split_and_count(char *arg, int *count);
 static char	**construct_new_argv(char **split_args, int count, char **argv,
