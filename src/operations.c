@@ -6,14 +6,15 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 13:53:55 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 21:24:58 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/16 21:36:35 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "libft.h"
-#include "push_swap.h"
 #include <stdlib.h>
+#include "libft.h"
+#include "ft_printf.h"
+#include "operations.h"
+#include "optimization.h"
 
 /**
  * @brief Adds a new operation to the list.
