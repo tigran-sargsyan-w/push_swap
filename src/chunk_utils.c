@@ -6,12 +6,12 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 13:48:42 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 21:24:45 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/16 21:13:32 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include <stdlib.h>
+#include "stack.h"
 
 static void	sort_int_array(int *arr, int size);
 
