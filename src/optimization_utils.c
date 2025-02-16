@@ -6,13 +6,13 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:33:44 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 21:25:04 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/16 21:44:58 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "push_swap.h"
 #include <stdlib.h>
+#include "libft.h"
+#include "operations.h"
 
 static int	has_pairs(const char *op1, const char *op2, char *ref1, char *ref2);
 static int	is_cancelable(const char *op1, const char *op2);
