@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 21:43:50 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/16 18:44:31 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	choose_sorting_algorithm(t_program_data *data)
 		sort_five(data->stack_a, data->stack_b, &data->op_list);
 	else
 		dynamic_chunk_sort(data->stack_a, data->stack_b, data->stack_a->size,
-				&data->op_list);
+			&data->op_list);
 }
 
 /**
