@@ -6,12 +6,14 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:48:49 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 21:25:27 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/17 11:43:32 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include <stddef.h>
+#include "stack.h"
+#include "operations.h"
+#include "optimization.h"
 
 static void	reverse_rotate(t_stack *stack);
 
