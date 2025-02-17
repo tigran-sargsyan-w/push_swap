@@ -6,14 +6,12 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 17:08:02 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 17:10:44 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/17 12:07:37 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_H
 # define STACK_H
-
-# include <stddef.h>
 
 typedef struct s_node
 {
