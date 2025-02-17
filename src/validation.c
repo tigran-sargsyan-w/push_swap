@@ -6,15 +6,15 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 20:39:51 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 21:48:38 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/17 12:01:51 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "libft.h"
-#include "push_swap.h"
-#include <limits.h>
 #include <stdlib.h>
+#include <limits.h>
+#include "libft.h"
+#include "ft_printf.h"
+#include "parsing.h"
 
 static int	is_valid_digit_string(char *str);
 
