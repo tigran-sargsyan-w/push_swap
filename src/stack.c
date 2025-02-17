@@ -6,13 +6,13 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 00:45:21 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 21:25:46 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/17 11:57:48 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "push_swap.h"
 #include <stdlib.h>
+#include "stack.h"
+#include "ft_printf.h"
 
 /**
  * @brief Initialize a new stack
