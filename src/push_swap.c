@@ -6,33 +6,15 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/16 22:01:50 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:58:27 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include "push_swap.h"
 
-static char	**parse_and_validate_args(t_program_data *data, char **argv);
 static void	choose_sorting_algorithm(t_program_data *data);
 static void	optimize_and_print_operations(t_program_data *data);
-
-/**
- * @brief Parses and validates the arguments.
- * @param data Program data.(All the data needed for the program)
- * @param argv Array of arguments.
- * @return New argv array.
- */
-static char	**parse_and_validate_args(t_program_data *data, char **argv)
-{
-	data->was_split = (data->argc == 2);
-	data->new_argv = split_in_quotes_args(&data->argc, argv);
-	check_no_args(data->argc, data);
-	check_numeric_args(data->argc, data->new_argv, data);
-	check_int_limits_args(data->argc, data->new_argv, data);
-	check_duplicates_args(data->argc, data->new_argv, data);
-	return (data->new_argv);
-}
 
 /**
  * @brief Chooses the sorting algorithm based on the number of elements.
@@ -65,17 +47,8 @@ static void	optimize_and_print_operations(t_program_data *data)
 }
 
 /**
- * @brief Frees the allocated memory.
- * @param data Program data.(All the data needed for the program)
+ * @brief Main function for the push_swap program.
  */
-void	cleanup(t_program_data *data)
-{
-	stack_clear(data->stack_a);
-	stack_clear(data->stack_b);
-	free_operations(data->op_list);
-	free_arguments(data->new_argv, data->argc, data->was_split);
-}
-
 int	main(int argc, char **argv)
 {
 	t_program_data	data;

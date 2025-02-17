@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 17:09:11 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 20:30:05 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:17:56 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_program_data
 char			**split_in_quotes_args(int *argc, char **argv);
 void			free_arguments(char **argv, int argc, int was_split);
 void			parse_and_push_args(t_stack *stack, int argc, char **argv);
+char			**parse_and_validate_args(t_program_data *data, char **argv);
 void			cleanup(t_program_data *data);
 
 #endif
