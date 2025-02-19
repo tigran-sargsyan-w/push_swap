@@ -63,6 +63,20 @@ run_empty_input_tests() {
     fi
 }
 
+# Function to run sorted tests
+run_sorted_test() {
+    args="$1"
+    output=$(./push_swap $args 2>&1)
+    if [ -z "$output" ]; then
+        echo "✅ OK (Already Sorted): ARG=\"$args\""
+    else
+        echo "❌ FAIL (Already Sorted): ARG=\"$args\""
+        echo "   Expected no output (already sorted), but got:"
+        echo "\"$output\""
+        errors=$((errors + 1))
+    fi
+}
+
 # Function to run memory errors tests via Valgrind(no leaks check)
 run_valgrind_memory_errors_test() {
     args="$1"
@@ -157,9 +171,20 @@ echo "🚀 [Phase 2] Testing push_swap with empty input..."
 echo ""
 run_empty_input_tests "Error: no arguments"
 
+echo ""
+echo "🚀 [Phase 3] Testing  push_swap with already sorted input..."
+echo ""
+run_sorted_test "1 2 3 4 5"
+run_valgrind_memory_errors_test "1 2 3 4 5"
+run_valgrind_memory_leaks_test "1 2 3 4 5"
+run_sorted_test "-10 0 7 12 100"
+run_valgrind_memory_errors_test "-10 0 7 12 100"
+run_valgrind_memory_leaks_test "-10 0 7 12 100"
+
+
 # Memory errors tests
 echo ""
-echo "🚀 [Phase 3] Memory Errors tests via Valgrind..."
+echo "🚀 [Phase 4] Memory Errors tests via Valgrind..."
 echo ""
 echo "✅ [Check OK] checking tests that should return OK [Check OK] ✅"
 run_valgrind_memory_errors_test "1 3 5 9 20 -4 50 60 4 8"
@@ -184,7 +209,7 @@ run_valgrind_memory_errors_test "214748364748385 28 47 29"
 
 # Memory leaks tests
 echo ""
-echo "🚀 [Phase 4] Memory Leaks tests via Valgrind..."
+echo "🚀 [Phase 5] Memory Leaks tests via Valgrind..."
 echo ""
 echo "✅ [Check OK] checking tests that should return OK [Check OK] ✅"
 run_valgrind_memory_leaks_test "1 3 5 9 20 -4 50 60 4 8"
@@ -209,7 +234,7 @@ run_valgrind_memory_leaks_test "214748364748385 28 47 29"
 
 # Random tests(benchmark for project evaluation)
 echo ""
-echo "🚀 [Phase 5] Randomized tests..."
+echo "🚀 [Phase 6] Randomized tests..."
 run_random_tests 5 3 # Test with 3 numbers 5 times
 run_random_tests 5 4 # Test with 4 numbers 5 times
 run_random_tests 5 5 # Test with 5 numbers 5 times
