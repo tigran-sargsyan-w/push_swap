@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 20:15:53 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/17 20:15:56 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:41:37 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,6 @@
 #include "push_swap.h"
 #include <stdlib.h>
 #include <unistd.h>
-
-/**
- * @brief Check if the stack A is sorted and the stack B is empty
- * @param a The stack A
- * @param b The stack B
- * @return 1 if the stack A is sorted and the stack B is empty, 0 otherwise
- */
-static int	is_sorted_and_b_empty(t_stack *a, t_stack *b)
-{
-	t_node	*curr;
-
-	if (b->size != 0)
-		return (0);
-	curr = a->top;
-	while (curr && curr->next)
-	{
-		if (curr->value > curr->next->value)
-			return (0);
-		curr = curr->next;
-	}
-	return (1);
-}
 
 /**
  * @brief Apply the swap and push operations

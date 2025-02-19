@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 20:20:44 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/17 20:20:51 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:36:17 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,28 @@
 #include "parsing.h"
 #include "validation.h"
 #include "optimization.h"
+
+/**
+ * @brief Check if the stack A is sorted and the stack B is empty
+ * @param a The stack A
+ * @param b The stack B
+ * @return 1 if the stack A is sorted and the stack B is empty, 0 otherwise
+ */
+int	is_sorted_and_b_empty(t_stack *a, t_stack *b)
+{
+	t_node	*curr;
+
+	if (b->size != 0)
+		return (0);
+	curr = a->top;
+	while (curr && curr->next)
+	{
+		if (curr->value > curr->next->value)
+			return (0);
+		curr = curr->next;
+	}
+	return (1);
+}
 
 /**
  * @brief Parses and validates the arguments.

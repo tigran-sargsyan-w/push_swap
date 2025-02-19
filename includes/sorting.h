@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 17:08:37 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/15 20:31:53 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:37:18 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_rotation_params
 }		t_rotation_params;
 
 void	assign_sorted_indices(t_stack *a);
+int		is_sorted_and_b_empty(t_stack *a, t_stack *b);
 void	sort_three(t_stack *stack, t_operation **op_list);
 void	sort_four(t_stack *a, t_stack *b, t_operation **op_list);
 void	sort_five(t_stack *a, t_stack *b, t_operation **op_list);

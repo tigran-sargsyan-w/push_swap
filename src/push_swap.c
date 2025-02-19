@@ -6,7 +6,7 @@
 /*   By: tsargsya <tsargsya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:27:52 by tsargsya          #+#    #+#             */
-/*   Updated: 2025/02/17 19:58:27 by tsargsya         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:38:53 by tsargsya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ int	main(int argc, char **argv)
 	data.new_argv = parse_and_validate_args(&data, argv);
 	parse_and_push_args(data.stack_a, data.argc, data.new_argv);
 	assign_sorted_indices(data.stack_a);
+	if (is_sorted_and_b_empty(data.stack_a, data.stack_b))
+	{
+		cleanup(&data);
+		return (0);
+	}
 	choose_sorting_algorithm(&data);
 	optimize_and_print_operations(&data);
 	cleanup(&data);
