@@ -1,5 +1,8 @@
 # push_swap
 
+✅ **Completed**: Mandatory + Bonus  
+🏅 **Score**: 125/100
+
 ![42 Logo](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXfAZMOWHDQ3DKE63A9jWhIqQaKcKqUIXvzg&s)
 
 **push_swap** is a project from 42 School that challenges you to sort data using a limited set of operations. In this project, you will implement an efficient algorithm that sorts a stack of integers using two stacks (A and B) and a predefined set of instructions. The main objective is to minimize the number of operations needed to achieve a sorted stack.
